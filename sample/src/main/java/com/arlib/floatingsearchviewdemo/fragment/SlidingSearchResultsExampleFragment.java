@@ -82,20 +82,30 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
 
                     //simulates a query call to a data source
                     //with a new query.
-                    DataHelper.findSuggestions(getActivity(), newQuery, 5,
-                            FIND_SUGGESTION_SIMULATED_DELAY, new DataHelper.OnFindSuggestionsListener() {
+//                    DataHelper.findSuggestions(getActivity(), newQuery, 5,
+//                            FIND_SUGGESTION_SIMULATED_DELAY, new DataHelper.OnFindSuggestionsListener() {
+//
+//                                @Override
+//                                public void onResults(List<ColorSuggestion> results) {
+//
+//                                    //this will swap the data and
+//                                    //render the collapse/expand animations as necessary
+//                                    mSearchView.swapSuggestions(results);
+//
+//                                    //let the users know that the background
+//                                    //process has completed
+//                                    mSearchView.hideProgress();
+//                                }
+//                            });
+                    DataHelper.findColors(getActivity(), newQuery,
+                            new DataHelper.OnFindColorsListener() {
 
                                 @Override
-                                public void onResults(List<ColorSuggestion> results) {
-
-                                    //this will swap the data and
-                                    //render the collapse/expand animations as necessary
-                                    mSearchView.swapSuggestions(results);
-
-                                    //let the users know that the background
-                                    //process has completed
+                                public void onResults(List<ColorWrapper> results) {
+                                    mSearchResultsAdapter.swapData(results);
                                     mSearchView.hideProgress();
                                 }
+
                             });
                 }
 
@@ -144,7 +154,7 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
             public void onFocus() {
 
                 //show suggestions when search bar gains focus (typically history suggestions)
-                mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
+//                mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
 
                 Log.d(TAG, "onFocus()");
             }
@@ -156,7 +166,7 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
                 mSearchView.setSearchBarTitle(mLastQuery);
 
                 //you can also set setSearchText(...) to make keep the query there when not focused and when focus returns
-                //mSearchView.setSearchText(searchSuggestion.getBody());
+//                mSearchView.setSearchText(searchSuggestion.getBody());
 
                 Log.d(TAG, "onFocusCleared()");
             }

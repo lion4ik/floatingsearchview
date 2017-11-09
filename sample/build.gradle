@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion sdkCompileSdkVersion
+    buildToolsVersion sdkBuildToolsVersion
 
     defaultConfig {
         applicationId "com.arlib.floatingsearchviewdemo"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion sdkCompileSdkVersion
         versionCode 11
         versionName "3.0"
     }
@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(":library")
     compile files('libs/gson-2.4.jar')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:palette-v7:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:palette-v7:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
 }
